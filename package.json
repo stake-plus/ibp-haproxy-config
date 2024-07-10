@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@polkadot/api": "^12.1.1",
+    "axios": "^1.7.2",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  }
+}
