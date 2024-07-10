@@ -70,24 +70,29 @@ jq -r 'keys[]' services_rpc.json | while read -r network; do
     cat <<EOF > "$backend_file"
 backend ${network,,}-backend
   mode http
+  http-reuse safe
   balance leastconn
   server ${network,,}-rpc-1 1.1.1.1:10000 check inter 2s maxconn 10000
   server ${network,,}-rpc-2 2.2.2.2:10000 check inter 2s maxconn 10000
 
 backend ${network,,}-wsp2p-para-1
   mode http
+  http-reuse safe
   server ${network,,}-wsp2p-1 1.1.1.1:30332 check inter 2s maxconn 1000
 
 backend ${network,,}-wsp2p-relay-1
   mode http
+  http-reuse safe
   server ${network,,}-wsp2p-1 1.1.1.1:30334 check inter 2s maxconn 1000
 
 backend ${network,,}-wsp2p-para-2
   mode http
+  http-reuse safe
   server ${network,,}-wsp2p-2 2.2.2.2:30332 check inter 2s maxconn 1000
 
 backend ${network,,}-wsp2p-relay-2
   mode http
+  http-reuse safe
   server ${network,,}-wsp2p-2 2.2.2.2:30334 check inter 2s maxconn 1000
 
 EOF
